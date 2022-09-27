@@ -39,7 +39,7 @@ public class UsuarioController {
     @PostMapping()
     public ResponseEntity<IncluirUsuarioResponse> incluir(@RequestParam String usuarioData, @RequestParam("file") final MultipartFile file) throws IOException {
 
-        final var incluirClienteRequest = mapper.readValue(usuarioData, IncluirUsuarioRequest.class);
+        final var incluirUsuarioRequest = mapper.readValue(usuarioData, IncluirUsuarioRequest.class);
 
         var usuario = usuarioService.incluir(new IncluirUsuarioRequest());
 
