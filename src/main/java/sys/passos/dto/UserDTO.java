@@ -1,18 +1,14 @@
-package sys.passos.model;
+package sys.passos.dto;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
 import java.time.Instant;
 import java.time.LocalDate;
 
-@Entity
 @Data
-public class Usuario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDTO {
     private Long id;
-    @Column(unique = true)
     private String email;
     private String senha;
     private String nome;
@@ -25,5 +21,4 @@ public class Usuario {
     private String genero;
     private LocalDate dataCadastro;
     private LocalDate ultimaAtualizacao;
-
 }

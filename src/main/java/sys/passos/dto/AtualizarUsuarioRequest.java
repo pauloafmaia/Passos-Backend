@@ -1,11 +1,11 @@
-package sys.passos.Controller.dto;
+package sys.passos.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
-import java.time.Instant;
-
 @Data
-public class IncluirUsuarioResponse {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class AtualizarUsuarioRequest {
 
     private Long id;
     private String email;
@@ -18,6 +18,4 @@ public class IncluirUsuarioResponse {
     private String estado;
     private String celular;
     private String genero;
-    private Instant dataCadastro;
-    private Instant ultimaAtualizacao;
 }

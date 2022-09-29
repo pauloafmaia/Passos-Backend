@@ -1,13 +1,12 @@
-package sys.passos.Controller.dto;
+package sys.passos.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AtualizarUsuarioRequest {
+public class IncluirUsuarioRequest {
 
-    private Long id;
     private String email;
     private String senha;
     private String nome;
