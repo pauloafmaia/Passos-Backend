@@ -11,7 +11,6 @@ import sys.passos.util.CopyProperties;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -25,28 +24,28 @@ public class UserService {
 
     public UserDTO getUserById(Long id) {
         Optional<User> user = rep.findById(id);
-        return user.map(CopyProperties::copy).orElseThrow(() -> new UserNotFoundException("User not found"));
+        return user.map(u -> CopyProperties.copy(u, UserDTO.class)).orElseThrow(() -> new UserNotFoundException("User not found"));
     }
 
     public UserDTO insert(User user) {
         Assert.isNull(user.getId(),"Cannot add User");
-        return CopyProperties.copy(rep.save(user));
+        return CopyProperties.copy(rep.save(user), UserDTO.class);
     }
 
-//    public UserDTO update(User user, Long id) {
-//        Assert.notNull(id,"Cannot update User");
-//
-//        Optional<User> optional = rep.findById(id);
-//        if(optional.isPresent()) {
-//            User db = optional.get();
-//            db.setId(user.getId());
-//            System.out.println("User id " + db.getId());
-//            rep.save(db);
-//            return UserDTO.create(db);
-//        } else {
-//            return null;
-//        }
-//    }
+    public UserDTO update(User user, Long id) {
+        Assert.notNull(id,"Cannot update User");
+
+        Optional<User> optional = rep.findById(id);
+        if(optional.isPresent()) {
+            User db = optional.get();
+            db.setId(user.getId());
+            System.out.println("User id " + db.getId());
+            rep.save(db);
+            return CopyProperties.copy(rep.save(user), UserDTO.class);
+        } else {
+            return null;
+        }
+    }
 
     public void delete(Long id) {
         rep.deleteById(id);
