@@ -19,17 +19,17 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping()
-    public ResponseEntity get() {
-        List<UserDTO> users = userService.getUsers();
-        return ResponseEntity.ok(users);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity get(@PathVariable("id") Long id) {
-        UserDTO user = userService.getUserById(id);
-        return ResponseEntity.ok(user);
-    }
+//    @GetMapping()
+//    public ResponseEntity get() {
+//        List<UserDTO> users = userService.getUsers();
+//        return ResponseEntity.ok(users);
+//    }
+//
+//    @GetMapping("/{id}")
+//    public ResponseEntity get(@PathVariable("id") Long id) {
+//        UserDTO user = userService.getUserById(id);
+//        return ResponseEntity.ok(user);
+//    }
 
     @PostMapping
     public ResponseEntity post(@RequestBody User user) {
@@ -42,14 +42,14 @@ public class UserController {
                 .buildAndExpand(id).toUri();
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity put(@PathVariable("id") Long id, @RequestBody User user) {
-        user.setId(id);
-        UserDTO u = userService.update(user, id);
-        return u != null ?
-                ResponseEntity.ok(u) :
-                ResponseEntity.notFound().build();
-    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity put(@PathVariable("id") Long id, @RequestBody User user) {
+//        user.setId(id);
+//        UserDTO u = userService.update(user, id);
+//        return u != null ?
+//                ResponseEntity.ok(u) :
+//                ResponseEntity.notFound().build();
+//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable("id") Long id) {
