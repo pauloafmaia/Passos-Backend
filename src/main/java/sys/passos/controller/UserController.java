@@ -8,7 +8,7 @@ import sys.passos.model.User;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping
 public class UserController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("/user")
     public User create (@RequestBody User user){
         return userRepository.save(user);
     }
