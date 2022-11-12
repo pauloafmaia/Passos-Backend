@@ -4,18 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import sys.passos.dao.SetListRepository;
-import sys.passos.dao.UserRepository;
 import sys.passos.dto.SetListDTO;
-import sys.passos.dto.UserDTO;
 import sys.passos.exception.SetListNotFoundException;
-import sys.passos.exception.UserNotFoundException;
 import sys.passos.model.SetList;
-import sys.passos.model.User;
 import sys.passos.util.CopyProperties;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class SetListService {

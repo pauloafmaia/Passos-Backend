@@ -15,6 +15,7 @@ public class SetList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String event;
     private String local;
     private String date;
     private String setList;

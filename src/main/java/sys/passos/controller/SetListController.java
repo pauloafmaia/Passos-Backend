@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sys.passos.dao.SetListRepository;
-import sys.passos.dao.UserRepository;
 import sys.passos.model.SetList;
-import sys.passos.model.User;
 import java.util.List;
 
 @RestController
@@ -38,6 +36,7 @@ public class SetListController {
     public ResponseEntity update (@PathVariable("id") long id, @RequestBody SetList setList){
         return setListRepository.findById(id)
                 .map(record -> {
+                    record.setEvent(setList.getEvent());
                     record.setLocal(setList.getLocal());
                     record.setDate(setList.getDate());
                     record.setSetList(setList.getSetList());

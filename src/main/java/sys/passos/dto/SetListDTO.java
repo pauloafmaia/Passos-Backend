@@ -6,6 +6,7 @@ import lombok.Data;
 public class SetListDTO {
 
     private Long id;
+    private String event;
     private String local;
     private String date;
     private String setList;
