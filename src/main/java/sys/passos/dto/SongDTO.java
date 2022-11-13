@@ -8,7 +8,7 @@ public class SongDTO {
     private Long id;
 
     private String name;
-    private String type;
+    private String gender;
     private String tone;
     private String link;
 }

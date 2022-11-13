@@ -39,7 +39,7 @@ public class SongController {
         return songRepository.findById(id)
                 .map(record -> {
                     record.setName(song.getName());
-                    record.setType(song.getType());
+                    record.setGender(song.getGender());
                     record.setTone(song.getTone());
                     record.setLink(song.getLink());
                     Song updated = songRepository.save(record);
