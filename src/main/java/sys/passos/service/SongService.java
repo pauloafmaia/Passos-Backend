@@ -4,11 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import sys.passos.dao.SongRepository;
-import sys.passos.dto.SetListDTO;
 import sys.passos.dto.SongDTO;
-import sys.passos.exception.SetListNotFoundException;
 import sys.passos.exception.SongNotFoundException;
-import sys.passos.model.SetList;
 import sys.passos.model.Song;
 import sys.passos.util.CopyProperties;
 

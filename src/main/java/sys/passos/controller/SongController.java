@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sys.passos.dao.SongRepository;
-import sys.passos.model.SetList;
 import sys.passos.model.Song;
 
 import java.util.List;
