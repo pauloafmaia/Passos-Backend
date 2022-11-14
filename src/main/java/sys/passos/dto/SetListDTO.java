@@ -10,4 +10,5 @@ public class SetListDTO {
     private String local;
     private String date;
     private String setList;
+
 }
