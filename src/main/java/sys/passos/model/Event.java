@@ -9,13 +9,13 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-public class SetList {
+public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String event;
+    private String name;
     private String local;
     private String date;
     private String setList;
