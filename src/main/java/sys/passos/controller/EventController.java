@@ -36,7 +36,7 @@ public class EventController {
     public ResponseEntity update (@PathVariable("id") long id, @RequestBody Event event){
         return eventRepository.findById(id)
                 .map(record -> {
-                    record.setName(event.getName());
+                    record.setEventName(event.getEventName());
                     record.setLocal(event.getLocal());
                     record.setDate(event.getDate());
                     record.setSetList(event.getSetList());
