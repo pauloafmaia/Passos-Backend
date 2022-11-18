@@ -29,7 +29,7 @@ public class PersonController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/event")
+    @PostMapping("/person")
     public Person create (@RequestBody Person person){
         return personRepository.save(person);
     }
@@ -43,9 +43,6 @@ public class PersonController {
                     record.setGender(person.getGender());
                     record.setEmail(person.getEmail());
                     record.setAddress(person.getAddress());
-                    record.setCity(person.getCity());
-                    record.setState(person.getState());
-                    record.setCountry(person.getCountry());
                     Person updated = personRepository.save(record);
                     return ResponseEntity.ok().body(updated);
                 }).orElse(ResponseEntity.notFound().build());

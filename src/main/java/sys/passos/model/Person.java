@@ -2,10 +2,8 @@ package sys.passos.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -16,11 +14,18 @@ public class Person {
     private Long id;
 
     private String name;
+
+    @Column(name = "birth_date", nullable = false)
     private String birthDate;
+
     private String gender;
+
+    @Column(length = 80, nullable = false)
     private String email;
-    private String address;
-    private String city;
-    private String state;
-    private String country;
+
+    @OneToOne(mappedBy = "person")
+    private User user;
+
+    @OneToMany(mappedBy="person")
+    private List<Address> address;
 }
