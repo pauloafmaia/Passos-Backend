@@ -33,12 +33,13 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity create (@RequestBody User user){
-        userRepository.save(user);
-        if (user != null) {
-            return ResponseEntity.status(200).body("User created!");
+    public ResponseEntity create(@RequestBody User user) {
+        User existingUser = userRepository.findByEmail(user.getEmail());
+        if (existingUser != null) {
+            return ResponseEntity.status(400).body("{\"message\": \"This email is already in use\"}");
         } else {
-            return ResponseEntity.status(400).body("User was not created");
+            userRepository.save(user);
+            return ResponseEntity.status(201).body("{\"message\": \"User created successfully\"}");
         }
     }
 

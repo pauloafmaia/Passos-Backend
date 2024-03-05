@@ -7,7 +7,6 @@ import sys.passos.dao.UserRepository;
 import sys.passos.dto.UserDTO;
 import sys.passos.exception.UserNotFoundException;
 import sys.passos.model.User;
-import sys.passos.util.CopyProperties;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,28 +24,59 @@ public class UserService {
 
     public UserDTO getUserById(Long id) {
         Optional<User> user = rep.findById(id);
-        return user.map(u -> CopyProperties.copy(u, UserDTO.class)).orElseThrow(() -> new UserNotFoundException("User not found"));
+        if (user.isPresent()) {
+            UserDTO userDTO = new UserDTO();
+            User u = user.get();
+            userDTO.setId(u.getId());
+            userDTO.setLogin(u.getLogin());
+            userDTO.setPassword(u.getPassword());
+            userDTO.setEmail(u.getEmail());
+
+            return userDTO;
+        } else {
+            throw new UserNotFoundException("User not found");
+        }
     }
 
     public UserDTO insert(User user) {
-        Assert.isNull(user.getId(),"Cannot add User");
-        return CopyProperties.copy(rep.save(user), UserDTO.class);
+        Assert.isNull(user.getId(), "Cannot add User");
+
+        User savedUser = rep.save(user);
+
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(savedUser.getId());
+        userDTO.setLogin(savedUser.getLogin());
+        userDTO.setPassword(savedUser.getPassword());
+        userDTO.setEmail(savedUser.getEmail());
+
+        return userDTO;
     }
 
+
     public UserDTO update(User user, Long id) {
-        Assert.notNull(id,"Cannot update User");
+        Assert.notNull(id, "Cannot update User");
 
         Optional<User> optional = rep.findById(id);
-        if(optional.isPresent()) {
+        if (optional.isPresent()) {
             User db = optional.get();
             db.setId(user.getId());
-            System.out.println("User id " + db.getId());
+            db.setLogin(user.getLogin());
+            db.setPassword(user.getPassword());
+            db.setEmail(user.getEmail());
             rep.save(db);
-            return CopyProperties.copy(rep.save(user), UserDTO.class);
+
+            UserDTO updatedUserDTO = new UserDTO();
+            updatedUserDTO.setId(db.getId());
+            db.setLogin(user.getLogin());
+            db.setPassword(user.getPassword());
+            db.setEmail(user.getEmail());
+
+            return updatedUserDTO;
         } else {
             return null;
         }
     }
+
 
     public void delete(Long id) {
         rep.deleteById(id);
